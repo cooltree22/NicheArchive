@@ -1,0 +1,692 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.game-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: transform, opacity;
+}
+
+.game-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Button styling */
+#tutorialButton {
+  display: block;
+  margin: 20px auto 40px auto;
+  padding: 12px 24px;
+  background-color: #30FF7F;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #30FF7F88;
+  transition: transform 0.25s ease;
+  z-index: 1000;
+}
+.tutorial-button-container {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+/* Push the button to the right */
+.tutorial-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -10px;
+  margin-bottom: -20px;
+}
+#tutorialButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #30FF7Fcc;
+}
+.tutorial-video {
+  width: 100%;
+  max-width: 480px;
+  height: 270px;
+  border: none;
+  margin: 0 auto;
+  display: block;
+}
+/* Optional: shrink top spacing after header */
+h2 + .tutorial-button-container {
+  margin-top: -10px; /* adjust this as needed */
+}
+.popupContent ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+/* Tutorial popup box */
+#tutorialPopup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+#tutorialPopup .popupContent {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  z-index: 2100;
+  color: white;
+}
+
+#tutorialPopup .popupContent iframe {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#tutorialPopup .closePopup {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+#tutorialPopup .closePopup:hover {
+  color: red;
+}
+
+#tutorialPopup .popupOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  z-index: 1;
+}
+
+#tutorialPopup .popupContent {
+  position: relative;
+  z-index: 2;
+}
+
+#tutorialPopup a {
+  color: #30FF7F;
+  text-decoration: underline;
+}
+
+#tutorialPopup a:hover {
+  color: #66ffaf;
+}
+
+
+.filter-toggle-fixed {
+  position: fixed;
+  top: 130px; /* under the header */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+.filter-toggle, .platform-toggle {
+position: relative;
+  display: flex;
+  background-color: #2f2f2f;
+  border-radius: 30px;
+  border: 1px solid #30FF7F;
+  box-shadow: 0 0 15px #30FF7F55;
+  overflow: hidden;
+}
+
+.filter-toggle span {
+  padding: 10px 24px;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #30FF7F;
+  background: transparent;
+  transition: color 0.3s;
+   position: relative;
+  z-index: 2;
+}
+
+.filter-toggle span.active {
+  color: black;
+}
+
+#sliderHighlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #30FF7F;
+  border-radius: 30px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+.filter-toggle:hover {
+  box-shadow: 0 0 20px #30FF7Fcc;
+}
+
+
+
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 12px #30FF7F55; }
+  50% { box-shadow: 0 0 20px #30FF7Faa; }
+  100% { box-shadow: 0 0 12px #30FF7F55; }
+}
+
+.filter-toggle-wrapper:hover .filter-toggle {
+  animation: pulseGlow 1.2s infinite;
+}
+
+
+#filterTogglepaid,
+#filterTogglefree {
+  background-color: #333;
+  color: #30FF7F;
+  border: 1px solid #30FF7F;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.platform-filter-wrapper {
+  position: absolute;
+  top: 360px; /* Adjust based on your layout */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+}
+
+.platform-toggle-wrapper {
+  position: absolute;
+  top: 160px; /* below the first toggle */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+}
+
+.platform-btn {
+  padding: 8px 18px;
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #30FF7F;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.platform-btn.active {
+  background-color: #30FF7F;
+  color: #000;
+}
+
+.platform-toggle-wrapper {
+  position: absolute;
+  top: 360px; /* adjust based on spacing under the Free/Paid toggle */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: #2f2f2f;
+  box-shadow: 0 0 12px rgba(0, 255, 127, 0.2);
+  transition: transform 0.25s ease;
+}
+.platform-toggle-wrapper:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.platform-toggle {
+  position: relative;
+  display: absolute;
+  border: 1px solid #30FF7F;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 12px #30FF7F55;
+  transition: box-shadow 0.3s ease;
+  background-color: #2f2f2f;
+}
+.platform-toggle:hover {
+  box-shadow: 20 20 20px #30FF7Fcc;
+}
+.platform-toggle-wrapper:hover .platform-toggle {
+  animation: pulseGlow 1.2s infinite;
+}
+.platform-toggle span {
+  padding: 10px 16px;
+  cursor: pointer;
+  z-index: 2;
+  user-select: none;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #30FF7F;
+  background-color: transparent;
+  transition: color 0.3s ease;
+}
+.platform-toggle span.active {
+  color: black;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #2f2f2f;
+  color: #30FF7F;
+}
+
+header {
+  padding: 20px;
+  background-color: #3a3a3a;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.update-timer {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: #444;
+  color: #30FF7F;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 1000;
+  box-shadow: 0 0 15px #30FF7F88; /* default green */
+}
+
+
+.green-glow {
+  color: #30FF7F;
+  background-color: #1f4033;
+  box-shadow: 0 0 15px #30FF7F88;
+}
+.green-glow:hover {
+  box-shadow: 0 0 20px #30FF7Fcc;
+}
+
+/* Orange glow */
+.orange-glow {
+  color: #FFA500;
+  background-color: #4a3200;
+  box-shadow: 0 0 15px #FFA500cc;
+}
+.orange-glow:hover {
+  box-shadow: 0 0 20px #FFA500dd;
+}
+
+/* Red glow */
+.red-glow {
+  color: #FF4500;
+  background-color: #3b0000;
+  box-shadow: 0 0 15px #FF0000;
+}
+.red-glow:hover {
+  box-shadow: 0 0 20px #FF0000;
+}
+
+
+/* Hover effect - scale and glow */
+.update-timer:hover {
+  transform: scale(1.1);
+}
+
+/* Green glow */
+.green-glow {
+  box-shadow: 0 0 15px #30FF7F88;
+}
+.green-glow:hover {
+  box-shadow: 0 0 20px #30FF7Fcc;
+}
+
+/* Orange glow */
+.orange-glow {
+  color: #FFA500;
+  box-shadow: 0 0 15px #FFA500cc;
+}
+.orange-glow:hover {
+  box-shadow: 0 0 20px #FFA500dd;
+}
+
+/* Red glow */
+.red-glow {
+  color: #FF4500;
+  box-shadow: 0 0 15px #FF0000;
+}
+.red-glow:hover {
+  box-shadow: 0 0 20px #FF0000;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.section {
+  background-color: #404040;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #1a1a1a;
+  transition: transform 0.2s ease;
+}
+
+.section:hover {
+  transform: scale(1.02);
+}
+
+.section img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 10px auto;
+  display: block;
+  aspect-ratio: 1 / 1;
+}
+
+.section h2 {
+  margin-top: 0;
+  color: #30FF7F;
+}
+
+.section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+
+
+
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: #888;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.section li a {
+  color: #30FF7F;
+  text-decoration: none;
+  display: block;
+  margin: 6px 0;
+  transition: color 0.3s;
+}
+
+.section li a:hover {
+  color: #61ffaf;
+}
+.section a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px auto;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* link websites code */
+
+
+main.container {
+  padding-top: 100px; /* 60px for header + 60px filter + 60px spacing */
+}
+
+
+/* Dropdown */
+.game-item summary {
+  cursor: pointer;
+  color: #30FF7F;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.game-item ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.version-link {
+  color: #30FF7F;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.version-link:hover {
+  text-decoration: underline;
+}
+
+/* Popup styles */
+.popupBox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupContent {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  max-width: 90%;
+  text-align: center;
+  position: relative;
+  z-index: 2100;
+  color: white;
+}
+
+.closePopup {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.closePopup:hover {
+  color: red;
+}
+.popupOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  z-index: 1;
+}
+.popupContent {
+  position: relative;
+  z-index: 2; /* keeps it on top of the overlay */
+}
+
+
+
+
+
+
+
+
+#backButton {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background-color: #444;
+  color: #30FF7F;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 0 15px #30FF7F88; /* Keep default soft glow */
+  cursor: pointer;
+  transition: transform 0.25s ease; /* Only scale */
+  text-decoration: none;
+  z-index: 1000;
+  user-select: none;
+}
+
+#backButton:hover {
+  transform: scale(1.1); /* Scale up */
+  /* No box-shadow change — no extra glow */
+}
+
+
+
+.animated-title {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.animated-title span {
+  display: inline-block;
+  color: #30FF7F;
+  animation: liftUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.animated-title span:nth-child(1) { animation-delay: 0s; }
+.animated-title span:nth-child(2) { animation-delay: 0.1s; }
+.animated-title span:nth-child(3) { animation-delay: 0.2s; }
+.animated-title span:nth-child(4) { animation-delay: 0.3s; }
+.animated-title span:nth-child(5) { animation-delay: 0.4s; }
+.animated-title span:nth-child(6) { animation-delay: 0.5s; }
+.animated-title span:nth-child(7) { animation-delay: 0.6s; }
+.animated-title span:nth-child(8) { animation-delay: 0.7s; }
+.animated-title span:nth-child(9) { animation-delay: 0.8s; }
+.animated-title span:nth-child(10) { animation-delay: 0.9s; }
+.animated-title span:nth-child(11) { animation-delay: 1s; }
+.animated-title span:nth-child(12) { animation-delay: 1.1s; }
+.animated-title span:nth-child(13) { animation-delay: 1.2s; }
+.animated-title span:nth-child(14) { animation-delay: 1.3s; }
+
+@keyframes liftUp {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+    color: #30FF7F;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+    color: #66FFAA; /* lighter green */
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    color: #30FF7F;
+  }
+}
+
+#hosterLinks a {
+  display: block;
+  margin: 8px 0;
+  padding: 6px 12px;
+  background-color: #333;
+  border-radius: 8px;
+  color: #30FF7F;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#hosterLinks a:hover {
+  background-color: #444;
+  color: #66ffaf;
+  transform: scale(1.1); /* Scale up */
+  transition: box-shadow 0.3s ease;
+box-shadow: 0 0 20px #30FF7Fcc;
+
+}
+
