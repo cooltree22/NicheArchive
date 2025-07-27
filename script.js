@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
     timerElement.classList.add("red-glow");
   }
 
-  timerElement.textContent = `Last updated: ${result}`;
+  timerElement.textContent = `Last updated: ${result} ⏱`;
 
 
 
