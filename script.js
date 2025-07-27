@@ -44,7 +44,7 @@ document.getElementById("updateTimer").addEventListener("click", () => {
 window.addEventListener('DOMContentLoaded', () => {
 
 
-  const lastUpdatedISO = "2025-07-27T16:38:06";
+  const lastUpdatedISO = "2025-07-27T19:19:00";
   const lastUpdatedDate = new Date(lastUpdatedISO);
   const now = new Date();
 
